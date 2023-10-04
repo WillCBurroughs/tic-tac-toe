@@ -1,11 +1,21 @@
 ## What processes will I follow to complete this project 
 
-- I will use MoSCoW to decide what I must, should, could and will not have 
-- I will decide the features that I want to have in this project 
+- I will use MoSCoW to decide what I must, should, could and will not have (Done) 
+- I will decide the features that I want to have in this project (Done)
 - I will design what the finished project as I envision it would look like 
 - I will write out all the functionality of what I would to add would entail 
 - I will Write out the versions that this will consist based off of milestones 
 - I will begin and iterate over the project versions until I am finished with the project 
+
+### Table of Contents 
+- [What processes will I follow to complete this project](#what-processes-will-i-follow-to-complete-this-project)
+  - [Table of Contents](#table-of-contents)
+  - [MoSCoW](#moscow)
+    - [Must have](#must-have)
+    - [Should have](#should-have)
+    - [Could have](#could-have)
+    - [Won't have](#wont-have)
+  - [Design of project](#design-of-project)
 
 
 ### MoSCoW 
@@ -50,3 +60,8 @@
 - Will not have different sizes of board available for connect-4 or tic tac toe 
 - Will not allow more than 2 players at a time for tic-tac-toe or connect-4 
 - Will not have settings where users can alter or change aspects of the game 
+
+
+### Design of project 
+
+- I believe that there are five main compenents in the first version of the project that contains the must haves of the project. Reset button, Player turn label, board, Marks (X or O by player), 
