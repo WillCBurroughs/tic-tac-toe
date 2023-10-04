@@ -64,4 +64,4 @@
 
 ### Design of project 
 
-- I believe that there are five main compenents in the first version of the project that contains the must haves of the project. Reset button, Player turn label, board, Marks (X or O by player), 
+- I believe that there are five main compenents in the first version of the project that contains the must haves of the project. Reset button, Player turn label, board, Marks (X or O by player)
