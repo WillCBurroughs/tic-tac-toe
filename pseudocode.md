@@ -4,10 +4,11 @@
 - I will decide the features that I want to have in this project (Done)
 - I will design what the finished project as I envision it would look like (Done)
 - I will write out all the functionality of what I would to add would entail (Done)
-- I will Write out the versions that this will consist based off of milestones 
-- I will begin and iterate over the project versions until I am finished with the project 
+- I will Write out the versions that this will consist based off of milestones up to could have (Done)
+- I will begin and iterate over the project versions until I am finished with the must and should haves 
 - Go back to design once finished with Must and Should versions 
 - Go back to all functionality for could have after getting to this point 
+-  I will iterate over the project versions until I am finished with could haves 
 
 ### Table of Contents 
 - [What processes will I follow to complete this project](#what-processes-will-i-follow-to-complete-this-project)
@@ -27,6 +28,13 @@
     - [Check hover and when hovering on a block](#check-hover-and-when-hovering-on-a-block)
     - [Saving player scores](#saving-player-scores)
     - [Saving Images, optionally between screens](#saving-images-optionally-between-screens)
+  - [Versions of project](#versions-of-project)
+    - [First version](#first-version)
+    - [Two row version](#two-row-version)
+    - [First full game version](#first-full-game-version)
+    - [Saving session wins](#saving-session-wins)
+    - [Allowing for name and photos](#allowing-for-name-and-photos)
+    - [Saving score](#saving-score)
 
 
 ### MoSCoW 
@@ -113,10 +121,46 @@
 - Can have session score that is not saved or brought in between games 
 
 #### Saving Images, optionally between screens 
-
 - Can test if image.src == null. If image value is null we just won't display an image 
 - Need to add a new screen or popup to view the rules of tic-tac-toe
 
+### Versions of project 
 
+#### First version 
+
+- Need to get first row of columns on the screen 
+- Need to add values to an array 
+- When that value is called array is populated with a value "X" or "Y" depending on player1Move = true 
+- Need to Have alternating X and O 
+  
+  
+#### Two row version 
+- Need to add second row 
+- Need condition that if player has entire row we give them a victory condtion 
+- Reset condition is called when all blocks are filled 
+- When reset is clicked array is emptied and refresh is called 
+  
+
+#### First full game version 
+- Need to add third row Need to test for vertical connection 
+- Need to test for diagonal connection (Needs to go both ways)
+  
+#### Saving session wins 
+- If game is won we iterate and if player1 wins when the connection is made we iterate player1 Session wins if false player2Wins++ 
+
+#### Allowing for name and photos 
+- Need to make page that includes photos and name and will save these to pass them to the next page 
+- If value of name and image does not equal null we will show the name and image in the game page 
+
+#### Saving score 
+- Need to have string that is the names combined and that stores value 
+- Needs to be both names combined so either way we save the correctValues 
+- Can have wins be based on key value pairs and set the value based on the first players name 
+- That way no matter who player 1 is, they have the correct score 
+- Can have function that sets this correctly 
+- May need to sort this so that it comes out the same no matter how it is input 
+- Can use trim method on names and set this equal to the names 
+
+  
   
   
