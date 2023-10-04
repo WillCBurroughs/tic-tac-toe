@@ -35,3 +35,18 @@
 - Have Session score so we can see how players are doing against each other this session 
 
 
+#### Could have 
+
+- Could have version of tic-tac-toe where users play against computer (tic-tac-toe)
+- Could add screen where users choose what game they want to play with signup screen 
+- Could have leaderboards that save scores of players and sorts by total amount of games won 
+- Could have version that allows users to play connect-4 
+- Could have multiplayer aspects incorporated into the game 
+  
+#### Won't have 
+
+- Will not add any games other than tic-tac-toe and connect-4 
+- Will not add any AI elements into the game 
+- Will not have different sizes of board available for connect-4 or tic tac toe 
+- Will not allow more than 2 players at a time for tic-tac-toe or connect-4 
+- Will not have settings where users can alter or change aspects of the game 
