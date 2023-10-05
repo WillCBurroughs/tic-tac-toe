@@ -2,6 +2,16 @@
 let gameOver = false; 
 let playerOneTurn = true; 
 
+let makeTurn = document.createElement("h3"); 
+makeTurn.classList.add("topText");
+makeTurn.textContent = "It's Player One's turn";
+
+let holdMakeTurn = document.createElement("div");
+holdMakeTurn.classList.add("container");
+holdMakeTurn.appendChild(makeTurn);
+
+document.body.appendChild(holdMakeTurn);
+
 // Will be changed and evaluate for win conditions
 let storeConditions = [["","",""],["","",""],["","",""]];
 
@@ -55,12 +65,17 @@ document.body.appendChild(containerTic);
 // Classes easily 
 function makeCol(){
     let tempCol = document.createElement("div");
-    tempCol.classList.add("col-3", "ticCol", "makeMark", "text-center", "justify-content-center", "d-flex", "align-items-center");
+    tempCol.classList.add("col-4","col-md-3", "ticCol", "makeMark", "text-center", "justify-content-center", "d-flex", "align-items-center");
     tempCol.style.height = "200px"
 
     tempCol.addEventListener("click", function(){
         tempCol.classList.add("selected");
         playerOneTurn = !playerOneTurn;
+        if(playerOneTurn && gameOver == false){
+            makeTurn.textContent = "Player One's turn";
+        } else if(playerOneTurn == false && gameOver == false){
+            makeTurn.textContent = "Player Two's turn";
+        }
     })
 
     // Can check if classList includes gameOver and if has clicked class.
@@ -128,7 +143,17 @@ function addMarkforArray(object, row, col){
         console.log(mark);
         testWin(row,col,mark);
 
-        // We can test if gameOver = true and if so remove all clickListeners from makeCol
+        if(gameOver == true && mark == "x"){
+            makeTurn.textContent = "Player 1 won"
+        } else if(gameOver == true && mark == "o"){
+            makeTurn.textContent = "Player 2 won"
+        }
+        
+        if(testDraw() && gameOver == false){
+            gameOver = true; 
+            makeTurn.textContent = "Game is tie";
+        }
+
      }
         console.log(storeConditions);
     })
@@ -218,9 +243,20 @@ function diagonalWin(col,row, mark){
 
 }
 
-// Test if no value in the array evaluates to falsy
+// Test if no value in the array evaluates to falsy. If so, then game is not a draw
 function testDraw(){
+    let gameIsDraw = false; 
 
+    // When all values are 
+    for(let i = 0; i < 3; i++){
+        for(let j = 0; j < 3; j++){
+            if(!storeConditions[i][j]){
+                return false; 
+            }
+        }
+    }
+
+    return true;
 }
 
 // Needs to set array to empty 
