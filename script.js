@@ -24,7 +24,7 @@ addMarkforArray(thirdTic,0,2);
 
 let containerTic = document.createElement("div");
 containerTic.classList.add("container-fluid"); 
-containerTic.style.marginTop = "100px";
+containerTic.style.marginTop = "50px";
 
 let holdRow = makeRow();
 
@@ -60,6 +60,14 @@ bottomRow.append(seventhTic, eigthTic, ninthTic);
 containerTic.appendChild(bottomRow);
 
 document.body.appendChild(containerTic);
+
+let resetButton = document.createElement("div");
+resetButton.classList.add("reset", "d-none");
+resetButton.textContent = "Reset Game";
+
+resetButton.addEventListener("click", resetGame);
+
+document.body.appendChild(resetButton);
 
 // How to makeCol so that we can add and remove 
 // Classes easily 
@@ -154,6 +162,9 @@ function addMarkforArray(object, row, col){
             makeTurn.textContent = "Game is tie";
         }
 
+        if(gameOver){
+            resetButton.classList = "reset d-block";
+        }
      }
         console.log(storeConditions);
     })
@@ -263,6 +274,59 @@ function testDraw(){
 // Needs to set gameOver to false 
 
 function resetGame(){
+
+    resetButton.classList = "reset d-none"
+    
+    playerOneTurn = true;
+    gameOver = false; 
+    storeConditions = [["","",""],["","",""],["","",""]];
+    
+    columnTic.textContent = ""
+    columnTic.classList.remove("selected")
+
+    secondTic.textContent = ""
+    secondTic.classList.remove("selected")
+
+    thirdTic.textContent = ""
+    thirdTic.classList.remove("selected")
+
+    fourthTic.textContent = ""
+    fourthTic.classList.remove("selected")
+
+    fifthTic.textContent = ""
+    fifthTic.classList.remove("selected")
+
+    sixthTic.textContent = ""
+    sixthTic.classList.remove("selected")
+
+    seventhTic.textContent = ""
+    seventhTic.classList.remove("selected")
+
+    eigthTic.textContent = ""
+    eigthTic.classList.remove("selected")
+
+    ninthTic.textContent = ""
+    ninthTic.classList.remove("selected")
+
+    // Need to remove value of each class makeX and makeO from all values 
+
+    let holdX = document.querySelectorAll(".makeX");
+    console.log(holdX);
+
+    holdX.forEach(holdVal => {
+        holdVal.classList.remove("makeX");
+    })
+
+    let holdO = document.querySelectorAll(".makeO"); 
+
+    holdO.forEach(holdVal => {
+        holdVal.classList.remove("makeO"); 
+    })
+
+    console.log(holdO);
+
+    makeTurn.textContent = "Player 1 turn"
+
 
 }
 
