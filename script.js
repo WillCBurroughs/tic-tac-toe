@@ -194,6 +194,28 @@ function verticalWin(col, mark){
 //
 function diagonalWin(col,row, mark){
 
+    // Need to test for diagonal win both ways
+    
+    if(col == row){
+        for(let i = 0; i < 3; i++){
+            if(storeConditions[i][i] != mark){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    if(col + row == 2){
+        for(let i = 0; i < 3; i++){
+            if(storeConditions[i][2 - i] != mark){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    return false;
+
 }
 
 // Test if no value in the array evaluates to falsy
