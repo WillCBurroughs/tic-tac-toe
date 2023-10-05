@@ -103,23 +103,42 @@ function makeCol(){
 // Not selected, can remove if selected 
 function addMarkforArray(object, row, col){
 
+    let mark = ""; 
+
     // Can check and execute this only if object 
     // Contains class selected 
 
     if(!object.classList.contains("selected")){
         object.addEventListener("click", function(){
+       
+        if(gameOver == false){
         if(playerOneTurn){
-            storeConditions[row][col] = "x";
-        } else {
             storeConditions[row][col] = "o";
+        } else {
+            storeConditions[row][col] = "x";
         }
 
+        if(playerOneTurn){
+            mark = "o";
+        } else {
+            mark = "x";
+        }
+
+
+        console.log(mark);
+        testWin(row,col,mark);
+
+        // We can test if gameOver = true and if so remove all clickListeners from makeCol
+     }
         console.log(storeConditions);
     })
 
     }
 
-    
+
+
+    // Need to see if game is over
+    //testWin(row, col, mark)
 
     console.log(storeConditions);
 
@@ -129,20 +148,51 @@ function addMarkforArray(object, row, col){
 // All win conditions will evaluate true or false 
 // Call others after 
 
-function testWin(){
+function testWin(row, col, mark){
+
+
+    // If any evaluate to true gameOver = true 
+    if(verticalWin(col, mark) || horizontalWin(row, mark) || diagonalWin(col,row, mark)){
+        gameOver = true;
+    } else {
+        gameOver = false; 
+    }
+
+    // If game is over reset button should appear
 
 }
  
+// Needs to test if all values in a row are equal 
+// To the selected mark
+function horizontalWin(row, mark){
 
-function horizontalWin(){
-    
+    // If even once this is not true not game over
+    for(let i = 0; i < 3; i++){
+        if(storeConditions[row][i] != mark){
+            return false; 
+        }
+    }
+
+    console.log("Win Horizontal");
+    return true;
 }
 
-function verticalWin(){
+function verticalWin(col, mark){
+
+    // If even once this is not true not game over
+    for(let i = 0; i < 3; i++){
+        if(storeConditions[i][col] != mark){
+            return false; 
+        }
+    }
+
+    console.log("Win vertical");
+    return true;
 
 }
 
-function diagonalWin(){
+//
+function diagonalWin(col,row, mark){
 
 }
 
