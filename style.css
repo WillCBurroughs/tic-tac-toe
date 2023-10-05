@@ -46,3 +46,19 @@ body {
     font-weight: 700;
     line-height: normal;
 }
+
+.session {
+    color: #FFF;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.names {
+    color: #FFF;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

@@ -2,6 +2,9 @@
 let gameOver = false; 
 let playerOneTurn = true; 
 
+let player1Wins = 0; 
+let player2Wins = 0; 
+
 let makeTurn = document.createElement("h3"); 
 makeTurn.classList.add("topText");
 makeTurn.textContent = "It's Player One's turn";
@@ -24,7 +27,7 @@ addMarkforArray(thirdTic,0,2);
 
 let containerTic = document.createElement("div");
 containerTic.classList.add("container-fluid"); 
-containerTic.style.marginTop = "50px";
+containerTic.style.marginTop = "30px";
 
 let holdRow = makeRow();
 
@@ -69,12 +72,67 @@ resetButton.addEventListener("click", resetGame);
 
 document.body.appendChild(resetButton);
 
+let firstPlayerWinCounts = document.createElement("h3"); 
+firstPlayerWinCounts.classList.add("session")
+let holdFirstPlayerWinCountsCol = document.createElement("div");
+holdFirstPlayerWinCountsCol.classList.add("col-12", "col-md-6", "col-lg-3"); 
+
+firstPlayerWinCounts.textContent = `Session wins: ${player1Wins}`; 
+
+holdFirstPlayerWinCountsCol.appendChild(firstPlayerWinCounts); 
+
+let secondPlayerWinCounts = document.createElement("h3"); 
+let holdSecondPlayerWinCounts = document.createElement("div");
+holdSecondPlayerWinCounts.classList.add("col-12", "col-md-6", "col-lg-3");
+
+secondPlayerWinCounts.textContent = `Session wins: ${player2Wins}`
+secondPlayerWinCounts.classList.add("session")
+
+holdSecondPlayerWinCounts.appendChild(secondPlayerWinCounts); 
+
+let holdScoresRow = document.createElement("div");
+holdScoresRow.classList.add("row", "d-flex", "justify-content-between"); 
+holdScoresRow.append(holdFirstPlayerWinCountsCol, holdSecondPlayerWinCounts);
+
+let holdScoresPhotos = document.createElement("div")
+holdScoresPhotos.classList.add("container")
+holdScoresPhotos.style.marginTop = "20px"
+
+let holdNameFirst = document.createElement("h3"); 
+holdNameFirst.classList.add("names")
+
+// Later will test if saved name applies and apply name 
+holdNameFirst.textContent = "Player 1";
+
+let holdNamesSecond = document.createElement("h3"); 
+holdNamesSecond.classList.add("names")
+
+// Later will set equal to second saved name if applies 
+holdNamesSecond.textContent = "Player 2"
+
+let holdNamesDiv = document.createElement("div");
+holdNamesDiv.classList.add("col", "col-3"); 
+holdNamesDiv.appendChild(holdNameFirst); 
+
+let holdNamesSecondDiv = document.createElement("div");
+holdNamesSecondDiv.classList.add("col", "col-3");
+holdNamesSecondDiv.appendChild(holdNamesSecond);
+
+let holdNamesRow = document.createElement("div"); 
+holdNamesRow.classList.add("row", "d-flex", "justify-content-between"); 
+holdNamesRow.append(holdNamesDiv, holdNamesSecondDiv);
+
+holdScoresPhotos.append(holdNamesRow, holdScoresRow);
+
+document.body.append(holdScoresPhotos); 
+
+
 // How to makeCol so that we can add and remove 
 // Classes easily 
 function makeCol(){
     let tempCol = document.createElement("div");
-    tempCol.classList.add("col-4","col-md-3", "ticCol", "makeMark", "text-center", "justify-content-center", "d-flex", "align-items-center");
-    tempCol.style.height = "200px"
+    tempCol.classList.add("col-4","col-md-3", "col-lg-2", "ticCol", "makeMark", "text-center", "justify-content-center", "d-flex", "align-items-center");
+    tempCol.style.height = "180px"
 
     tempCol.addEventListener("click", function(){
         tempCol.classList.add("selected");
@@ -93,11 +151,11 @@ function makeCol(){
             if(playerOneTurn){
                 // Need to add class MakeX if player1 turn 
                 tempCol.classList.add("makeX")
-                tempCol.textContent = "x"
+                tempCol.textContent = "X"
             } else {
                 // Need to add class MakeO if player2 turn
                 tempCol.classList.add("makeO") 
-                tempCol.textContent = "o"
+                tempCol.textContent = "O"
             }
             
         }
@@ -153,8 +211,12 @@ function addMarkforArray(object, row, col){
 
         if(gameOver == true && mark == "x"){
             makeTurn.textContent = "Player 1 won"
+            player1Wins++; 
+            firstPlayerWinCounts.textContent = `Session wins: ${player1Wins}`; 
         } else if(gameOver == true && mark == "o"){
             makeTurn.textContent = "Player 2 won"
+            player2Wins++;
+            secondPlayerWinCounts.textContent = `Session wins: ${player2Wins}`; 
         }
         
         if(testDraw() && gameOver == false){
@@ -327,9 +389,7 @@ function resetGame(){
 
     makeTurn.textContent = "Player 1 turn"
 
-
 }
-
 
 function makeRow(){
     let tempRow = document.createElement("div");
