@@ -3,6 +3,10 @@
     background-color: rgb(103, 97, 94);
 }
 
+body {
+    background-color: rgb(103, 97, 94);
+}
+
 .ticCol {
     border: solid 5px gray;
 }
@@ -21,4 +25,12 @@
 
 .makeX {
     color: #FB6A6A;
+}
+
+.topText {
+    color: #fff;
+    font-size: 56px; 
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
