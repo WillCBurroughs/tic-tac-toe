@@ -7,7 +7,16 @@ let player2Wins = 0;
 
 let makeTurn = document.createElement("h3"); 
 makeTurn.classList.add("topText");
-makeTurn.textContent = "It's Player One's turn";
+
+let holdPlayerOneName = "Player One"
+
+
+
+if(localStorage.getItem("playerOneName")){
+    holdPlayerOneName = localStorage.getItem("playerOneName");
+}
+
+makeTurn.textContent = `It's ${holdPlayerOneName}'s turn`;
 
 let holdMakeTurn = document.createElement("div");
 holdMakeTurn.classList.add("container");
@@ -102,7 +111,7 @@ let holdNameFirst = document.createElement("h3");
 holdNameFirst.classList.add("names")
 
 // Later will test if saved name applies and apply name 
-holdNameFirst.textContent = "Player 1";
+holdNameFirst.textContent = `${holdPlayerOneName}`;
 
 let holdNamesSecond = document.createElement("h3"); 
 holdNamesSecond.classList.add("names")
@@ -138,7 +147,7 @@ function makeCol(){
         tempCol.classList.add("selected");
         playerOneTurn = !playerOneTurn;
         if(playerOneTurn && gameOver == false){
-            makeTurn.textContent = "Player One's turn";
+            makeTurn.textContent = `${holdPlayerOneName}'s turn`;
         } else if(playerOneTurn == false && gameOver == false){
             makeTurn.textContent = "Player Two's turn";
         }
@@ -210,7 +219,7 @@ function addMarkforArray(object, row, col){
         testWin(row,col,mark);
 
         if(gameOver == true && mark == "x"){
-            makeTurn.textContent = "Player 1 won"
+            makeTurn.textContent = `${holdPlayerOneName} Won`
             player1Wins++; 
             firstPlayerWinCounts.textContent = `Session wins: ${player1Wins}`; 
         } else if(gameOver == true && mark == "o"){
@@ -387,7 +396,7 @@ function resetGame(){
 
     console.log(holdO);
 
-    makeTurn.textContent = "Player 1 turn"
+    makeTurn.textContent = `${holdPlayerOneName} turn`
 
 }
 

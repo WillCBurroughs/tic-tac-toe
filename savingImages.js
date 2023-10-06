@@ -67,9 +67,13 @@ holdFirstNameInputCol.classList.add("col", "col-12", "applyColor");
 let takeNameInput = document.createElement("input");
 takeNameInput.classList.add("applyColor", "col", "col-12", "nameInput")
 
+if(large){
+    holdFirstTextRow.style.marginTop = "40px";
+}
+
 takeNameInput.placeholder = "Player1";
 
-takeNameInput.style.marginTop = "30px"
+takeNameInput.style.marginTop = "20px"
 
 holdFirstNameInputCol.append(takeNameInput);
 
@@ -90,3 +94,32 @@ holdBothProfiles.append(holdBothProfilesRow);
 
 document.body.append(holdBothProfiles);
 
+
+let continueButton = document.createElement("button"); 
+
+continueButton.textContent = "Continue →"
+continueButton.style.height = "70px"; 
+continueButton.style.position = "absolute";
+continueButton.style.right = "40px"
+continueButton.style.width = "300px"
+continueButton.style.bottom = "60px";
+continueButton.style.borderRadius = "40px";
+continueButton.style.border = "3px solid #76726F";
+continueButton.style.boxShadow = "0px 4px 4px 0px rgba(0, 0, 0, 0.25)";
+continueButton.style.backgroundColor = "rgba(118, 114, 111, 1)";
+continueButton.style.color = "#FFF";
+continueButton.style.fontSize = "45px";
+continueButton.style.fontStyle = "normal";
+continueButton.style.fontWeight = "700";
+
+continueButton.addEventListener("click", function(){
+    // This will only be true when not black space
+    if(takeNameInput.value.trim() !== ""){
+        localStorage.setItem("playerOneName", takeNameInput.value.trim());
+    }
+
+    window.location = "tic-tac-toe.html";
+
+})
+
+document.body.appendChild(continueButton); 
