@@ -8,12 +8,15 @@ let player2Wins = 0;
 let makeTurn = document.createElement("h3"); 
 makeTurn.classList.add("topText");
 
-let holdPlayerOneName = "Player One"
-
-
+let holdPlayerOneName = "Player One";
+let holdPlayerTwoName = "Player Two";
 
 if(localStorage.getItem("playerOneName")){
     holdPlayerOneName = localStorage.getItem("playerOneName");
+}
+
+if(localStorage.getItem("playerTwoName")){
+    holdPlayerTwoName = localStorage.getItem("playerTwoName"); 
 }
 
 makeTurn.textContent = `It's ${holdPlayerOneName}'s turn`;
@@ -99,6 +102,41 @@ secondPlayerWinCounts.classList.add("session")
 
 holdSecondPlayerWinCounts.appendChild(secondPlayerWinCounts); 
 
+// Will hold images of players 
+let holdImagesRow = document.createElement("div");
+holdImagesRow.classList.add("row", "d-flex", "justify-content-between"); 
+
+// Will contain first playerCol
+let holdPlayerCol = document.createElement("div");
+holdPlayerCol.classList.add("col-3");
+
+let holdFirstPlayerImage = document.createElement("img"); 
+
+// Can set to default image 
+
+holdFirstPlayerImage.classList.add("personPhoto");
+holdFirstPlayerImage.src = "img/Profile.png";
+
+// Can set to new value if getItem returns a value 
+
+holdPlayerCol.append(holdFirstPlayerImage);
+
+let holdSecondPlayerCol = document.createElement("div");
+holdSecondPlayerCol.classList.add("col-3"); 
+
+let holdSecondPlayerImage = document.createElement("img"); 
+
+holdSecondPlayerImage.classList.add("personPhoto");
+holdSecondPlayerImage.src = "img/Profile.png";
+
+holdSecondPlayerCol.append(holdSecondPlayerImage);
+
+
+holdImagesRow.append(holdPlayerCol, holdSecondPlayerCol); 
+
+// Return here for edits
+
+
 let holdScoresRow = document.createElement("div");
 holdScoresRow.classList.add("row", "d-flex", "justify-content-between"); 
 holdScoresRow.append(holdFirstPlayerWinCountsCol, holdSecondPlayerWinCounts);
@@ -117,7 +155,7 @@ let holdNamesSecond = document.createElement("h3");
 holdNamesSecond.classList.add("names")
 
 // Later will set equal to second saved name if applies 
-holdNamesSecond.textContent = "Player 2"
+holdNamesSecond.textContent = `${holdPlayerTwoName}`
 
 let holdNamesDiv = document.createElement("div");
 holdNamesDiv.classList.add("col", "col-3"); 
@@ -131,7 +169,7 @@ let holdNamesRow = document.createElement("div");
 holdNamesRow.classList.add("row", "d-flex", "justify-content-between"); 
 holdNamesRow.append(holdNamesDiv, holdNamesSecondDiv);
 
-holdScoresPhotos.append(holdNamesRow, holdScoresRow);
+holdScoresPhotos.append(holdNamesRow, holdImagesRow, holdScoresRow);
 
 document.body.append(holdScoresPhotos); 
 
@@ -149,7 +187,7 @@ function makeCol(){
         if(playerOneTurn && gameOver == false){
             makeTurn.textContent = `${holdPlayerOneName}'s turn`;
         } else if(playerOneTurn == false && gameOver == false){
-            makeTurn.textContent = "Player Two's turn";
+            makeTurn.textContent = `${holdPlayerTwoName}'s turn`;
         }
     })
 
@@ -223,7 +261,7 @@ function addMarkforArray(object, row, col){
             player1Wins++; 
             firstPlayerWinCounts.textContent = `Session wins: ${player1Wins}`; 
         } else if(gameOver == true && mark == "o"){
-            makeTurn.textContent = "Player 2 won"
+            makeTurn.textContent = `${holdPlayerTwoName} won`
             player2Wins++;
             secondPlayerWinCounts.textContent = `Session wins: ${player2Wins}`; 
         }
@@ -396,7 +434,7 @@ function resetGame(){
 
     console.log(holdO);
 
-    makeTurn.textContent = `${holdPlayerOneName} turn`
+    makeTurn.textContent = `${holdPlayerOneName}'s turn`
 
 }
 

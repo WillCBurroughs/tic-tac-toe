@@ -62,3 +62,10 @@ body {
     font-weight: 700;
     line-height: normal;
 }
+
+.personPhoto {
+height: 70px;
+width: 70px;
+border-radius: 50%;
+object-fit: "cover";
+}
