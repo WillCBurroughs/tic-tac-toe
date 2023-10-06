@@ -84,9 +84,86 @@ holdProfileFirstContainer.append(holdFirstTextRow);
 
 holdProfileFirst.append(holdProfileFirstContainer);
 
+// Need to replicate everything in the first profile 
+
+// Will hold Second profile 
 
 let holdSecondProfile = document.createElement("div");
 holdSecondProfile.classList.add("col", "col-5", "holdProfile");
+
+
+let holdSecondProfileFirstContainer = document.createElement("div"); 
+holdSecondProfileFirstContainer.classList.add("container");
+
+let holdSecondPersonAndUploadTextRow = document.createElement("div"); 
+holdSecondPersonAndUploadTextRow.classList.add("row", "justify-content-evenly", "applyColor");
+
+
+let holdSecondPerson = document.createElement("div"); 
+holdSecondPerson.classList.add("col", "col-12", "col-lg-3", "applyColor");
+
+holdSecondPerson.style.marginTop = "20px";
+
+let SecondimagePerson = document.createElement("img");
+SecondimagePerson.classList.add("applyColor")
+SecondimagePerson.src = "img/Profile.png"
+SecondimagePerson.style.height = "70px";
+SecondimagePerson.style.width = "70px";
+SecondimagePerson.style.display = "block";
+
+holdSecondPerson.append(SecondimagePerson); 
+
+holdSecondPersonAndUploadTextRow.append(holdSecondPerson);
+
+let holdSecondUploadText = document.createElement("h3"); 
+holdSecondUploadText.textContent = "Upload Photo";
+holdSecondUploadText.classList.add("applyColor");
+
+let holdSecondUploadTextDiv = document.createElement("div"); 
+holdSecondUploadTextDiv.classList.add("col-12", "col-lg-6", "applyColor", "text-align-center");
+
+if(large){
+    holdSecondUploadTextDiv.style.marginTop = "30px";
+}
+
+holdSecondUploadTextDiv.append(holdSecondUploadText); 
+
+holdSecondPersonAndUploadTextRow.append(holdSecondUploadTextDiv);
+
+holdSecondProfileFirstContainer.append(holdSecondPersonAndUploadTextRow);
+
+// Need to add row then add column that is full width 
+// Then need to add input that allows user to input text 
+
+let holdSecondFirstTextRow = document.createElement("div");
+holdSecondFirstTextRow.classList.add("row", "applyColor"); 
+
+let holdSecondFirstNameInputCol = document.createElement("col"); 
+holdSecondFirstNameInputCol.classList.add("col", "col-12", "applyColor");
+
+let takeSecondNameInput = document.createElement("input");
+takeSecondNameInput.classList.add("applyColor", "col", "col-12", "nameInput")
+
+if(large){
+    holdSecondFirstTextRow.style.marginTop = "40px";
+}
+
+takeSecondNameInput.placeholder = "Player2";
+
+takeSecondNameInput.style.marginTop = "20px"
+
+holdSecondFirstNameInputCol.append(takeSecondNameInput);
+
+holdSecondFirstTextRow.append(holdSecondFirstNameInputCol);
+
+holdSecondProfileFirstContainer.append(holdSecondFirstTextRow);
+
+
+holdSecondProfile.append(holdSecondProfileFirstContainer);
+
+
+
+// Stops here 
 
 holdBothProfilesRow.append(holdProfileFirst, holdSecondProfile);
 

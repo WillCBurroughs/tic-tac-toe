@@ -396,7 +396,7 @@ function resetGame(){
 
     console.log(holdO);
 
-    makeTurn.textContent = `${holdPlayerOneName} turn`
+    makeTurn.textContent = `${holdPlayerOneName}'s turn`
 
 }
 
