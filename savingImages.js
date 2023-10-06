@@ -47,6 +47,22 @@ holdUploadText.classList.add("applyColor");
 // Sets the image 
 holdUploadText.addEventListener("change", function(){
     imagePerson.src = URL.createObjectURL(holdUploadText.files[0]);
+
+    let file = holdUploadText.files[0];
+
+    if(file){
+        let saveFirstImageReader = new FileReader(); 
+
+        saveFirstImageReader.addEventListener("load", function(){
+            console.log(saveFirstImageReader.result);
+            localStorage.setItem("firstUserImage", saveFirstImageReader.result)
+        })
+
+        console.log(saveFirstImageReader.readAsDataURL(file));
+    }
+
+
+
 })
 
 let holdUploadTextDiv = document.createElement("div"); 
@@ -116,7 +132,11 @@ SecondimagePerson.classList.add("applyColor")
 SecondimagePerson.src = "img/Profile.png"
 SecondimagePerson.style.height = "70px";
 SecondimagePerson.style.width = "70px";
-SecondimagePerson.style.display = "block";
+SecondimagePerson.style.borderRadius = "50%";
+SecondimagePerson.style.objectFit = "cover";
+
+
+
 
 holdSecondPerson.append(SecondimagePerson); 
 
@@ -126,6 +146,27 @@ let holdSecondUploadText = document.createElement("input");
 holdSecondUploadText.type = "file";
 holdSecondUploadText.textContent = "Upload Photo";
 holdSecondUploadText.classList.add("applyColor");
+
+// Sets the image 
+holdSecondUploadText.addEventListener("change", function(){
+    SecondimagePerson.src = URL.createObjectURL(holdSecondUploadText.files[0]);
+
+    let file = holdSecondUploadText.files[0];
+
+    if(file){
+        let saveSecondImageReader = new FileReader(); 
+
+        saveSecondImageReader.addEventListener("load", function(){
+            console.log(saveSecondImageReader.result);
+            localStorage.setItem("SecondUserImage", saveSecondImageReader.result)
+        })
+
+        console.log(saveSecondImageReader.readAsDataURL(file));
+    }
+
+
+
+})
 
 let holdSecondUploadTextDiv = document.createElement("div"); 
 holdSecondUploadTextDiv.classList.add("col-12", "col-lg-6", "applyColor", "text-align-center");

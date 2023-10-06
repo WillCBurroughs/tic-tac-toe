@@ -117,6 +117,13 @@ let holdFirstPlayerImage = document.createElement("img");
 holdFirstPlayerImage.classList.add("personPhoto");
 holdFirstPlayerImage.src = "img/Profile.png";
 
+if(localStorage.getItem("firstUserImage")){
+    console.log("this runs");
+    holdFirstPlayerImage.src = localStorage.getItem("firstUserImage");
+}
+
+
+
 // Can set to new value if getItem returns a value 
 
 holdPlayerCol.append(holdFirstPlayerImage);
@@ -128,6 +135,12 @@ let holdSecondPlayerImage = document.createElement("img");
 
 holdSecondPlayerImage.classList.add("personPhoto");
 holdSecondPlayerImage.src = "img/Profile.png";
+
+if(localStorage.getItem("SecondUserImage")){
+    console.log("this runs");
+    holdSecondPlayerImage.src = localStorage.getItem("SecondUserImage");
+}
+
 
 holdSecondPlayerCol.append(holdSecondPlayerImage);
 
