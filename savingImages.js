@@ -32,15 +32,22 @@ imagePerson.classList.add("applyColor")
 imagePerson.src = "img/Profile.png"
 imagePerson.style.height = "70px";
 imagePerson.style.width = "70px";
-imagePerson.style.display = "block";
+imagePerson.style.borderRadius = "50%";
+imagePerson.style.objectFit = "cover";
 
 holdPerson.append(imagePerson); 
 
 holdFirstPersonAndUploadTextRow.append(holdPerson);
 
-let holdUploadText = document.createElement("h3"); 
+let holdUploadText = document.createElement("input"); 
+holdUploadText.type = "file"
 holdUploadText.textContent = "Upload Photo";
 holdUploadText.classList.add("applyColor");
+
+// Sets the image 
+holdUploadText.addEventListener("change", function(){
+    imagePerson.src = URL.createObjectURL(holdUploadText.files[0]);
+})
 
 let holdUploadTextDiv = document.createElement("div"); 
 holdUploadTextDiv.classList.add("col-12", "col-lg-6", "applyColor", "text-align-center");
@@ -115,7 +122,8 @@ holdSecondPerson.append(SecondimagePerson);
 
 holdSecondPersonAndUploadTextRow.append(holdSecondPerson);
 
-let holdSecondUploadText = document.createElement("h3"); 
+let holdSecondUploadText = document.createElement("input"); 
+holdSecondUploadText.type = "file";
 holdSecondUploadText.textContent = "Upload Photo";
 holdSecondUploadText.classList.add("applyColor");
 
@@ -193,6 +201,10 @@ continueButton.addEventListener("click", function(){
     // This will only be true when not black space
     if(takeNameInput.value.trim() !== ""){
         localStorage.setItem("playerOneName", takeNameInput.value.trim());
+    }
+
+    if(takeSecondNameInput.value.trim() !== ""){
+        localStorage.setItem("playerTwoName", takeSecondNameInput.value.trim())
     }
 
     window.location = "tic-tac-toe.html";
