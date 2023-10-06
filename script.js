@@ -2,9 +2,21 @@
 let gameOver = false; 
 let playerOneTurn = true; 
 
+let player1Wins = 0; 
+let player2Wins = 0; 
+
 let makeTurn = document.createElement("h3"); 
 makeTurn.classList.add("topText");
-makeTurn.textContent = "It's Player One's turn";
+
+let holdPlayerOneName = "Player One"
+
+
+
+if(localStorage.getItem("playerOneName")){
+    holdPlayerOneName = localStorage.getItem("playerOneName");
+}
+
+makeTurn.textContent = `It's ${holdPlayerOneName}'s turn`;
 
 let holdMakeTurn = document.createElement("div");
 holdMakeTurn.classList.add("container");
@@ -24,7 +36,7 @@ addMarkforArray(thirdTic,0,2);
 
 let containerTic = document.createElement("div");
 containerTic.classList.add("container-fluid"); 
-containerTic.style.marginTop = "100px";
+containerTic.style.marginTop = "30px";
 
 let holdRow = makeRow();
 
@@ -61,18 +73,81 @@ containerTic.appendChild(bottomRow);
 
 document.body.appendChild(containerTic);
 
+let resetButton = document.createElement("div");
+resetButton.classList.add("reset", "d-none");
+resetButton.textContent = "Reset Game";
+
+resetButton.addEventListener("click", resetGame);
+
+document.body.appendChild(resetButton);
+
+let firstPlayerWinCounts = document.createElement("h3"); 
+firstPlayerWinCounts.classList.add("session")
+let holdFirstPlayerWinCountsCol = document.createElement("div");
+holdFirstPlayerWinCountsCol.classList.add("col-12", "col-md-6", "col-lg-3"); 
+
+firstPlayerWinCounts.textContent = `Session wins: ${player1Wins}`; 
+
+holdFirstPlayerWinCountsCol.appendChild(firstPlayerWinCounts); 
+
+let secondPlayerWinCounts = document.createElement("h3"); 
+let holdSecondPlayerWinCounts = document.createElement("div");
+holdSecondPlayerWinCounts.classList.add("col-12", "col-md-6", "col-lg-3");
+
+secondPlayerWinCounts.textContent = `Session wins: ${player2Wins}`
+secondPlayerWinCounts.classList.add("session")
+
+holdSecondPlayerWinCounts.appendChild(secondPlayerWinCounts); 
+
+let holdScoresRow = document.createElement("div");
+holdScoresRow.classList.add("row", "d-flex", "justify-content-between"); 
+holdScoresRow.append(holdFirstPlayerWinCountsCol, holdSecondPlayerWinCounts);
+
+let holdScoresPhotos = document.createElement("div")
+holdScoresPhotos.classList.add("container")
+holdScoresPhotos.style.marginTop = "20px"
+
+let holdNameFirst = document.createElement("h3"); 
+holdNameFirst.classList.add("names")
+
+// Later will test if saved name applies and apply name 
+holdNameFirst.textContent = `${holdPlayerOneName}`;
+
+let holdNamesSecond = document.createElement("h3"); 
+holdNamesSecond.classList.add("names")
+
+// Later will set equal to second saved name if applies 
+holdNamesSecond.textContent = "Player 2"
+
+let holdNamesDiv = document.createElement("div");
+holdNamesDiv.classList.add("col", "col-3"); 
+holdNamesDiv.appendChild(holdNameFirst); 
+
+let holdNamesSecondDiv = document.createElement("div");
+holdNamesSecondDiv.classList.add("col", "col-3");
+holdNamesSecondDiv.appendChild(holdNamesSecond);
+
+let holdNamesRow = document.createElement("div"); 
+holdNamesRow.classList.add("row", "d-flex", "justify-content-between"); 
+holdNamesRow.append(holdNamesDiv, holdNamesSecondDiv);
+
+holdScoresPhotos.append(holdNamesRow, holdScoresRow);
+
+document.body.append(holdScoresPhotos); 
+
+
 // How to makeCol so that we can add and remove 
 // Classes easily 
 function makeCol(){
     let tempCol = document.createElement("div");
-    tempCol.classList.add("col-4","col-md-3", "ticCol", "makeMark", "text-center", "justify-content-center", "d-flex", "align-items-center");
-    tempCol.style.height = "200px"
+    tempCol.classList.add("col-4","col-md-3", "col-lg-2", "ticCol", "makeMark", "text-center", "justify-content-center", "d-flex", "align-items-center");
+    tempCol.style.height = "180px"
 
     tempCol.addEventListener("click", function(){
         tempCol.classList.add("selected");
         playerOneTurn = !playerOneTurn;
         if(playerOneTurn && gameOver == false){
-            makeTurn.textContent = "Player One's turn";
+            makeTurn.textContent = `${holdPlayerOneName}'s turn`;
         } else if(playerOneTurn == false && gameOver == false){
             makeTurn.textContent = "Player Two's turn";
         }
@@ -85,11 +160,11 @@ function makeCol(){
             if(playerOneTurn){
                 // Need to add class MakeX if player1 turn 
                 tempCol.classList.add("makeX")
-                tempCol.textContent = "x"
+                tempCol.textContent = "X"
             } else {
                 // Need to add class MakeO if player2 turn
                 tempCol.classList.add("makeO") 
-                tempCol.textContent = "o"
+                tempCol.textContent = "O"
             }
             
         }
@@ -144,9 +219,13 @@ function addMarkforArray(object, row, col){
         testWin(row,col,mark);
 
         if(gameOver == true && mark == "x"){
-            makeTurn.textContent = "Player 1 won"
+            makeTurn.textContent = `${holdPlayerOneName} Won`
+            player1Wins++; 
+            firstPlayerWinCounts.textContent = `Session wins: ${player1Wins}`; 
         } else if(gameOver == true && mark == "o"){
             makeTurn.textContent = "Player 2 won"
+            player2Wins++;
+            secondPlayerWinCounts.textContent = `Session wins: ${player2Wins}`; 
         }
         
         if(testDraw() && gameOver == false){
@@ -154,6 +233,9 @@ function addMarkforArray(object, row, col){
             makeTurn.textContent = "Game is tie";
         }
 
+        if(gameOver){
+            resetButton.classList = "reset d-block";
+        }
      }
         console.log(storeConditions);
     })
@@ -264,8 +346,59 @@ function testDraw(){
 
 function resetGame(){
 
-}
+    resetButton.classList = "reset d-none"
+    
+    playerOneTurn = true;
+    gameOver = false; 
+    storeConditions = [["","",""],["","",""],["","",""]];
+    
+    columnTic.textContent = ""
+    columnTic.classList.remove("selected")
 
+    secondTic.textContent = ""
+    secondTic.classList.remove("selected")
+
+    thirdTic.textContent = ""
+    thirdTic.classList.remove("selected")
+
+    fourthTic.textContent = ""
+    fourthTic.classList.remove("selected")
+
+    fifthTic.textContent = ""
+    fifthTic.classList.remove("selected")
+
+    sixthTic.textContent = ""
+    sixthTic.classList.remove("selected")
+
+    seventhTic.textContent = ""
+    seventhTic.classList.remove("selected")
+
+    eigthTic.textContent = ""
+    eigthTic.classList.remove("selected")
+
+    ninthTic.textContent = ""
+    ninthTic.classList.remove("selected")
+
+    // Need to remove value of each class makeX and makeO from all values 
+
+    let holdX = document.querySelectorAll(".makeX");
+    console.log(holdX);
+
+    holdX.forEach(holdVal => {
+        holdVal.classList.remove("makeX");
+    })
+
+    let holdO = document.querySelectorAll(".makeO"); 
+
+    holdO.forEach(holdVal => {
+        holdVal.classList.remove("makeO"); 
+    })
+
+    console.log(holdO);
+
+    makeTurn.textContent = `${holdPlayerOneName} turn`
+
+}
 
 function makeRow(){
     let tempRow = document.createElement("div");

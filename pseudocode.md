@@ -126,7 +126,7 @@
 
 ### Versions of project 
 
-#### First version 
+#### First version (Done)
 
 - Need to get first row of columns on the screen 
 - Need to add values to an array 
@@ -134,14 +134,14 @@
 - Need to Have alternating X and O 
   
   
-#### Two row version 
+#### Two row version (Done)
 - Need to add second row 
 - Need condition that if player has entire row we give them a victory condtion 
 - Reset condition is called when all blocks are filled 
 - When reset is clicked array is emptied and refresh is called 
   
 
-#### First full game version 
+#### First full game version (Done)
 - Need to add third row Need to test for vertical connection 
 - Need to test for diagonal connection (Needs to go both ways)
   
@@ -161,6 +161,6 @@
 - May need to sort this so that it comes out the same no matter how it is input 
 - Can use trim method on names and set this equal to the names 
 
-  
+
   
   

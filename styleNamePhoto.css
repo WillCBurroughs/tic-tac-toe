@@ -1,0 +1,33 @@
+
+* {
+    /* background-color: #67615E; */
+    overflow: hidden;
+}
+
+body {
+    background-color: #67615E; 
+}
+
+.holdProfiles {
+    background-color: #67615E;
+    margin-top: 50px;
+}
+
+.holdProfile {
+    border-radius: 45px;
+    border: 1px solid #7B7777;
+    background: #F6F6F6;
+    height: 300px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.applyColor {
+    background: #F6F6F6;
+}
+
+.nameInput {
+    border-radius: 90px;
+    padding-left: 40px;
+    height: 50px;
+    background: #D9D9D9;
+}
